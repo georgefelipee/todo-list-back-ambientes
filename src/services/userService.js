@@ -2,5 +2,5 @@ import User from '../models/UserModel.js';
 
 const createUser = (body) => User.create(body);
 const findBName = (name) => User.find({username:name})
-
-export default { createUser,findBName };
+const findBId = (id) => User.findById(id);
+export default { createUser,findBName,findBId };
