@@ -6,6 +6,7 @@ const TaskSchema = new mongoose.Schema({
     title: {type: String, required: true},
     description: {type: String, required: true},
     deadline: {type: Date, required: true},
+    status: {type: String, required: true, default: "pendente"},
   
 });
 
