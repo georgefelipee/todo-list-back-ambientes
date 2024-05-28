@@ -47,5 +47,24 @@ const login = async (req,res) => {
 
 }
 
+const getUsers = async (req,res) => {
+  try{
+      const users = await userService.findAllUsers();
+      res.send(users);
+  }catch(error){
+      return res.status(400).send({message: "Erro ao buscar usuarios"})
+  }
+}
 
-export default { create, login };
+const getUserById = async (req,res) => {
+  try{
+      const {id} = req.params;
+      const user = await userService.findBId(id);
+      res.send(user);
+  }catch(error){
+      return res.status(400).send({message: "Erro ao buscar usuario"})
+  }
+}
+
+
+export default { create, login, getUsers, getUserById };
