@@ -36,7 +36,12 @@ const login = async (req,res) => {
       console.log(check)
 
       if(check[0].password === password){
-          res.send(check)
+        const userObject = {
+          _id: check[0]._id,
+          username: check[0].username,
+          email: check[0].email,
+       }
+          res.send(userObject)
       }else{
           return res.status(400).send({message: "Senha errada"})
       }
