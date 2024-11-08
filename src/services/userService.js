@@ -1,7 +1,22 @@
+// userService.js
 import User from '../models/UserModel.js';
 
-const createUser = (body) => User.create(body);
-const findBName = (name) => User.find({username:name})
-const findBId = (id) => User.findById(id);
-const findAllUsers = () => User.find();
-export default { createUser,findBName,findBId,findAllUsers };
+class UserService {
+    createUser(body) {
+        return User.create(body);
+    }
+
+    findBName(name) {
+        return User.find({ username: name });
+    }
+
+    findBId(id) {
+        return User.findById(id);
+    }
+
+    findAllUsers() {
+        return User.find();
+    }
+}
+
+export default new UserService();

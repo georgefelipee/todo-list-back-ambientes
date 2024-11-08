@@ -1,24 +1,39 @@
+// app.js
 import express from "express";
 import connectMongoAtlas from "./src/config/dbConnect.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import taskRoutes from "./src/routes/taskRoutes.js";
 import cors from 'cors';
 
-const app = express();
-const port = process.env.PORT || 3000;
-app.use(express.urlencoded({extended:true}))
-app.use(express.json())
-app.use(cors());
+class App {
+    constructor() {
+        this.app = express();
+        this.port = process.env.PORT || 3000;
+        this.middlewares();
+        this.routes();
+        this.startServer();
+        connectMongoAtlas();
+    }
 
-app.listen(port,() => {
-    console.log('Servidor On' + port);
-})
+    middlewares() {
+        this.app.use(express.urlencoded({ extended: true }));
+        this.app.use(express.json());
+        this.app.use(cors());
+    }
 
-connectMongoAtlas();
+    routes() {
+        this.app.use('/user', userRoutes);
+        this.app.use('/task', taskRoutes);
+        this.app.get('/', (req, res) => {
+            res.send('Api ok!');
+        });
+    }
 
-app.use('/user', userRoutes )
-app.use('/task', taskRoutes )
+    startServer() {
+        this.app.listen(this.port, () => {
+            console.log('Servidor On ' + this.port);
+        });
+    }
+}
 
-app.get('/', (req, res) => {
-    res.send('Api ok!');
-})
+export default new App().app;
