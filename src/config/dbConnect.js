@@ -9,7 +9,7 @@ async function connectMongoAtlas(){
         
         return mongoose.connection;
     } catch (error){
-        console.log(error);
+        console.log('Erro ao conectar ao banco',error);
     }
 }
 

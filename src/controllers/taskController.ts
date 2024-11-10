@@ -1,12 +1,13 @@
-// TaskController.js
-import taskService from "../services/taskService.js";
+// TaskController.ts (atualizado para TypeScript)
+import { Request, Response, NextFunction } from 'express';
+import taskService from '../services/taskService.js';
 
 class TaskController {
-    async create(req, res) {
+    async create(req: Request, res: Response, next: NextFunction) {
         try {
             const newTask = await taskService.createTask(req.body);
             res.status(201).send({
-                message: "Tarefa criada com sucesso",
+                message: 'Tarefa criada com sucesso',
                 newTask: {
                     id: newTask._id,
                     title: newTask.title,
@@ -16,27 +17,27 @@ class TaskController {
                     username: req.body.username,
                 },
             });
-        } catch (error) {
-            return res.status(400).send("Erro ao criar tarefa. " + error.message);
+        } catch (error) { 
+            next(error); // Encaminha o erro para o middleware de tratamento de erros
         }
     }
 
-    async findAllTaskUser(req, res) {
+    async findAllTaskUser(req: Request, res: Response, next: NextFunction) {
         try {
             const id_user = req.params.user;
             const tasks = await taskService.findAllUserTasks(id_user);
             res.status(200).send(tasks);
         } catch (error) {
-            return res.status(400).send("Erro ao buscar tarefas. " + error.message);
+            next(error); // Encaminha o erro para o middleware de tratamento de erros
         }
     }
 
-    async editTask(req, res) {
+    async editTask(req: Request, res: Response, next: NextFunction) {
         try {
             const { id } = req.body;
             const taskUpdated = await taskService.editTask(id, req.body);
             res.status(200).send({
-                message: "Tarefa atualizada com sucesso para o usuario",
+                message: 'Tarefa atualizada com sucesso para o usuario',
                 taskUpdated: {
                     id,
                     title: taskUpdated.title,
@@ -46,33 +47,33 @@ class TaskController {
                 },
             });
         } catch (error) {
-            return res.status(400).send("Erro ao atualizar tarefa. " + error.message);
+            next(error); // Encaminha o erro para o middleware de tratamento de erros
         }
     }
 
-    async deleteTask(req, res) {
+    async deleteTask(req: Request, res: Response, next: NextFunction) {
         try {
             const { id } = req.params;
             await taskService.deleteTask(id);
-            res.status(200).send({ message: "Tarefa deletada com sucesso" });
+            res.status(200).send({ message: 'Tarefa deletada com sucesso' });
         } catch (error) {
-            return res.status(400).send("Erro ao deletar tarefa. " + error.message);
+            next(error); // Encaminha o erro para o middleware de tratamento de erros
         }
     }
 
-    async alterStatus(req, res) {
+    async alterStatus(req: Request, res: Response, next: NextFunction) {
         try {
             const { id } = req.params;
             const taskUpdated = await taskService.alterStatus(id);
             res.status(200).send({
-                message: "Tarefa atualizada com sucesso para o usuario",
+                message: 'Tarefa atualizada com sucesso para o usuario',
                 taskUpdated: {
                     id,
-                    status: "Concluido",
+                    status: 'Concluido',
                 },
             });
         } catch (error) {
-            return res.status(400).send("Erro ao atualizar tarefa. " + error.message);
+            next(error); // Encaminha o erro para o middleware de tratamento de erros
         }
     }
 }

@@ -1,0 +1,18 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "module": "ESNext", // Altere para 'ESNext' ou 'ES2022' para suporte a ESM
+      "experimentalDecorators": true,
+      "emitDecoratorMetadata": true,
+      "esModuleInterop": true,
+      "moduleResolution": "node",
+      "outDir": "./dist",
+      "skipLibCheck": true, // Opcional, mas ajuda a evitar problemas de verificação de tipos em bibliotecas
+      "sourceMap": true, // Opcional, para facilitar o debug,
+      "allowImportingTsExtensions": true,
+      "noEmit": true
+    },
+    "include": ["src/**/*.ts"],
+    "exclude": ["node_modules"]
+  }
+  
