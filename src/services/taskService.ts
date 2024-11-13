@@ -7,12 +7,12 @@ import userService from './userService.js';
 class TaskService {
     @LogExecution()
     async createTask(data) {
-        const { title, description, deadline, id_user, username } = data;
-        if (!title || !description || !deadline) {
+        const { title, description, deadline, id_user, username , priority} = data;
+        if (!title || !description || !deadline || !priority) {
             throw new CustomError("Preencha todos os campos");
         }
 
-        const taskObject = { title, description, deadline, id_user };
+        const taskObject = { title, description, deadline, id_user, priority };
         if (username) {
             const verifyUsername = await userService.findBName(username);
             if (verifyUsername.length === 0) {
