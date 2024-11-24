@@ -5,22 +5,26 @@ import taskService from '../services/taskService.js';
 class TaskController {
     async create(req: Request, res: Response, next: NextFunction) {
         try {
+
             const newTask = await taskService.createTask(req.body);
             res.status(201).send({
                 message: 'Tarefa criada com sucesso',
-                newTask: {
+                task: {
                     id: newTask._id,
                     title: newTask.title,
                     description: newTask.description,
                     deadline: newTask.deadline,
+                    priority: newTask.priority, 
                     id_user: newTask.id_user,
-                    username: req.body.username,
+                    status: newTask.status,
                 },
             });
-        } catch (error) { 
-            next(error); // Encaminha o erro para o middleware de tratamento de erros
+        } catch (error) {
+            next(error);
         }
     }
+    
+    
 
     async findAllTaskUser(req: Request, res: Response, next: NextFunction) {
         try {
