@@ -1,0 +1,153 @@
+type: collection.insomnia.rest/5.0
+name: TodoList ambientes
+meta:
+  id: wrk_820a8487c3d441eb90971734d6f0a19b
+  created: 1716674952175
+  modified: 1744764033418
+collection:
+  - name: User
+    meta:
+      id: fld_35fb363efd6d44bcb0913a91291c6e1a
+      created: 1716674964273
+      modified: 1716674964273
+      sortKey: -1716674964273
+    children:
+      - url: "{{ _.url }}user/login"
+        name: Login
+        meta:
+          id: req_67105e2020bf4b75bf6bd3ff17520f4b
+          created: 1716674966911
+          modified: 1716816477451
+          isPrivate: false
+          sortKey: -1716674966911
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username":"george_fe",
+            	"password":"1234532"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.1.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/user/register"
+        name: Criar usuario
+        meta:
+          id: req_784442abe647464dbc424cfec7fc63c0
+          created: 1716674970739
+          modified: 1744764129060
+          isPrivate: false
+          sortKey: -1716674970739
+        method: POST
+        body:
+          mimeType: application/json
+          text: |-
+            {
+            	"username":"george_fe",
+            	"password":"1234532"
+            }
+        headers:
+          - name: Content-Type
+            value: application/json
+          - name: User-Agent
+            value: insomnia/9.1.1
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/user/getusers"
+        name: Get Users
+        meta:
+          id: req_8db72de0e2484d18a063caf4e04481e4
+          created: 1744764239356
+          modified: 1744764299344
+          isPrivate: false
+          sortKey: -1744764239356
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/user/getuser/67fefce263a682ce58c42d70"
+        name: Get User by ID
+        meta:
+          id: req_9850144bb8d343259b0503d310e6b698
+          created: 1744764308694
+          modified: 1744764453751
+          isPrivate: false
+          sortKey: -1744024393841
+        method: GET
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+      - url: "{{ _.url }}/user/deleteuser/67fefce263a682ce58c42d70"
+        name: Delete User By Id
+        meta:
+          id: req_9084e6e3d8274d1bb2deeb13c963e487
+          created: 1744764421973
+          modified: 1744764436067
+          isPrivate: false
+          sortKey: -1743654471083.5
+        method: DELETE
+        headers:
+          - name: User-Agent
+            value: insomnia/11.0.2
+        settings:
+          renderRequestBody: true
+          encodeUrl: true
+          followRedirects: global
+          cookies:
+            send: true
+            store: true
+          rebuildPath: true
+  - name: Tasks
+    meta:
+      id: fld_6fb83801098f4adc8def2564e4e34ee7
+      created: 1716816483798
+      modified: 1716816483798
+      sortKey: -1716816483798
+cookieJar:
+  name: Default Jar
+  meta:
+    id: jar_ded3694112f1611530f0d67ee47dbfbb89ee4f51
+    created: 1744764033218
+    modified: 1744764033218
+environments:
+  name: Base Environment
+  meta:
+    id: env_ded3694112f1611530f0d67ee47dbfbb89ee4f51
+    created: 1716674952180
+    modified: 1744764116189
+    isPrivate: false
+  data:
+    url: http://localhost:3000
